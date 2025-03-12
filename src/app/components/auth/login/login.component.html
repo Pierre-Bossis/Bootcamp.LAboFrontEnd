@@ -1,0 +1,38 @@
+<div class="container">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label class="form-label mt-5">Informations de connexion</label>
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="email" formControlName="email" placeholder="Adresse email">
+              <label for="email">Adresse email</label>
+              <!-- Message d'erreur pour le champ email -->
+               @if(loginForm.get('email')?.touched && loginForm.get('email')?.invalid){
+                @if(loginForm.get('email')?.hasError('required')){
+                    <span style="color:red;">L'adresse email est requise.</span>
+                }
+                @if(loginForm.get('email')?.hasError('pattern')){
+                    <span style="color:red;">Adresse email invalide.</span>
+                }
+               }
+            </div>
+            <div class="form-floating">
+              <input type="password" class="form-control" id="password" formControlName="password" placeholder="Mot de passe" autocomplete="off">
+              <label for="password">Mot de passe</label>
+              <!-- Message d'erreur pour le champ mot de passe -->
+               @if(loginForm.get('password')?.touched && loginForm.get('password')?.invalid){
+                @if(loginForm.get('password')?.hasError('required')){
+                    <span style="color:red;">Le mot de passe est requis.</span>
+                   }
+               }
+            </div>
+          </div>
+          @if(errorMessage){
+            <span class="text-danger mt-3">{{errorMessage}}</span>
+          }
+          <div class="form-group">
+            <div class="d-grid gap-2">
+                <button class="btn btn-lg btn-primary" type="submit" [disabled]="loginForm.invalid">Se connecter</button>
+              </div>
+          </div>
+    </form>
+</div>

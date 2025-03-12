@@ -1,0 +1,85 @@
+<div class="container">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label class="form-label mt-5">Informations de connexion</label>
+            <div class="form-floating mb-3">
+                <input type="nom" class="form-control" id="nom" formControlName="nom" placeholder="nom">
+                <label for="nom">Nom</label>
+                <!-- Message d'erreur pour le champ nom -->
+                 @if(registerForm.get('nom')?.touched && registerForm.get('nom')?.invalid){
+                  @if(registerForm.get('nom')?.hasError('required')){
+                      <span style="color:red;">Le Nom est requis.</span>
+                  }
+                  @if(registerForm.get('nom')?.hasError('minlength')){
+                      <span style="color:red;">Le Nom doit au moins contenir deux caractères.</span>
+                  }
+                 }
+              </div>
+              
+            <div class="form-floating mb-3">
+                <input type="prenom" class="form-control" id="prenom" formControlName="prenom" placeholder="prenom">
+                <label for="prenom">Prénom</label>
+                <!-- Message d'erreur pour le champ prenom -->
+                 @if(registerForm.get('prenom')?.touched && registerForm.get('prenom')?.invalid){
+                  @if(registerForm.get('prenom')?.hasError('required')){
+                      <span style="color:red;">Le Prénom est requis.</span>
+                  }
+                  @if(registerForm.get('prenom')?.hasError('minlength')){
+                      <span style="color:red;">Le Prénom doit au moins contenir deux caractères.</span>
+                  }
+                 }
+              </div>
+              
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="email" formControlName="email" placeholder="Adresse email">
+              <label for="email">Adresse email</label>
+              <!-- Message d'erreur pour le champ email -->
+               @if(registerForm.get('email')?.touched && registerForm.get('email')?.invalid){
+                @if(registerForm.get('email')?.hasError('required')){
+                    <span style="color:red;">L'adresse email est requise.</span>
+                }
+                @if(registerForm.get('email')?.hasError('pattern')){
+                    <span style="color:red;">Adresse email invalide.</span>
+                }
+               }
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="password" formControlName="password" placeholder="Mot de passe" autocomplete="off">
+              <label for="password">Mot de passe</label>
+              <!-- Message d'erreur pour le champ mot de passe -->
+               @if(registerForm.get('password')?.touched && registerForm.get('password')?.invalid){
+                @if(registerForm.get('password')?.hasError('required')){
+                    <span style="color:red;">Le mot de passe est requis.</span>
+                   }
+                @if(registerForm.get('password')?.hasError('minlength')){
+                    <span style="color:red;">Le mot de passe doit faire au moins 8 caractères.</span>
+                }
+               }
+            </div>
+
+            <div class="form-floating">
+                <input type="password" class="form-control" id="confirm" formControlName="confirm" placeholder="Confirmation Mot de passe" autocomplete="off">
+                <label for="confirm">Confirmation Mot de passe</label>
+                <!-- Message d'erreur pour le champ Confirmation mot de passe -->
+                 @if(registerForm.get('confirm')?.touched && registerForm.get('confirm')?.invalid){
+                  @if(registerForm.get('confirm')?.hasError('required')){
+                      <span style="color:red;">La confirmation est requise.</span>
+                     }
+                  @if(registerForm.hasError('passwordMismatch') && registerForm.get('confirm')?.touched){
+                      <span style="color:red;">Les mot de passe ne correspondent pas.</span>
+                  }
+                 }
+              </div>
+          </div>
+
+          @if(errorMessage){
+            <span class="text-danger mt-3">{{errorMessage}}</span>
+          }
+          <div class="form-group">
+            <div class="d-grid gap-2">
+                <button class="btn btn-lg btn-primary" type="submit" [disabled]="registerForm.invalid">Se connecter</button>
+              </div>
+          </div>
+    </form>
+</div>
