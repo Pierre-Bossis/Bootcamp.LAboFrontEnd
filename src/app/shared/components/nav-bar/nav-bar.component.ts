@@ -12,13 +12,17 @@ export class NavBarComponent implements OnInit{
   authService:AuthService = inject(AuthService)
   router:Router = inject(Router)
   isConnected:boolean = false
+  email:string = ''
   
   ngOnInit(): void {
-    this.authService.isConnected$.subscribe((state) => this.isConnected = state)
+    this.authService.isConnected$.subscribe((state) => {
+      this.isConnected = state
+      this.email = this.authService.getEmail()
+    })
   }
   logout() {
     this.authService.logout()
-    this.router.navigate([''])
+    this.router.navigate(['auth/login'])
   }
 
 }

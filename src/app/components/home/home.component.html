@@ -1,1 +1,60 @@
-<p>home works!</p>
+<div class="container mt-5">
+    <!-- Section Hero -->
+    <header class="text-center p-5 bg-primary text-white rounded shadow-lg">
+      <h1 class="display-4 fw-bold">Bienvenue sur Notre Site</h1>
+      <p class="lead">Découvrez nos services et rejoignez-nous dès aujourd'hui.</p>
+      @if(!isConnected){
+        <a routerLink="auth/register" class="btn btn-light btn-lg mt-3">Inscription</a>
+      }
+    </header>
+  
+    <!-- Section Services -->
+    <div class="row text-center mt-5">
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Produits</h5>
+            <p class="card-text">Consultez la liste des produits.</p>
+            <a routerLink="produits" class="btn btn-primary">En savoir plus</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Commandes</h5>
+            <p class="card-text">Consultez l'historique de vos commandes.</p>
+            <a href="#" class="btn btn-primary">En savoir plus</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Compte</h5>
+            <p class="card-text">Accédez aux informations liées à votre compte.</p>
+            <a href="#" class="btn btn-primary">En savoir plus</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+      <!-- Section Lorem Ipsum stylisée -->
+  <div class="mt-5 p-4 bg-light text-center rounded shadow-sm">
+    <h2 class="fw-bold text-primary">fames ac turpis egestas</h2>
+    <p class="lead text-muted px-4">
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in neque et nisl tincidunt sodales 
+      a eu lectus. Donec at convallis sapien. Pellentesque habitant morbi tristique senectus et netus et malesuada 
+      fames ac turpis egestas."
+    </p>
+    <a routerLink="/services" class="btn btn-outline-primary mt-3">Découvrir Nos Services</a>
+  </div>
+
+    <!-- Section Contact -->
+    <div class="mt-5 text-center">
+      <h2 class="mb-4">Nous Contacter</h2>
+      <p>Besoin d'informations ? Contactez-nous dès maintenant.</p>
+      <a routerLink="/contact" class="btn btn-outline-primary btn-lg">Contact</a>
+    </div>
+  </div>
+  

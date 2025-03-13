@@ -10,5 +10,5 @@ export const isAdminGuard: CanActivateFn = (route, state) => {
     return true;
   }
   router.navigate(['error'])
-  return false;
-};
+  return false
+}

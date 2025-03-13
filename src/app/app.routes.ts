@@ -8,14 +8,15 @@ import { CreateProduitComponent } from './components/produits/create-produit/cre
 import { DetailsProduitComponent } from './components/produits/details-produit/details-produit.component';
 import { EditProduitComponent } from './components/produits/edit-produit/edit-produit.component';
 import { isAdminGuard } from './shared/guards/is-admin.guard';
+import { userIsNotAuthenticatedGuard } from './shared/guards/user-is-not-authenticated.guard';
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
     {path: 'auth',
         children:[
             {path: '', component: LoginComponent},
-            {path: 'login', component: LoginComponent},
-            {path: 'register', component: RegisterComponent}
+            {path: 'login', component: LoginComponent, canActivate: [userIsNotAuthenticatedGuard]},
+            {path: 'register', component: RegisterComponent, canActivate: [userIsNotAuthenticatedGuard]}
         ]
     },
     {path: 'produits',
