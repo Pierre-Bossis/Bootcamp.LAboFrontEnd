@@ -3,11 +3,11 @@ import { HttpInterceptorFn } from '@angular/common/http';
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
     // Récupérer le token stocké dans le localstorage
     const authToken = localStorage.getItem('token');
-    console.log("TokenInterceptor  intercept  token:", authToken);
+    //console.log("TokenInterceptor  intercept  token:", authToken);
   
     // Vérifier s'il y a un token et qu'il n'est pas vide
     if (authToken && authToken != '') {
-      console.log("TokenInterceptor  intercept  token:", authToken);
+      //console.log("TokenInterceptor  intercept  token:", authToken);
       // Cloner la requête et ajouter l'en-tête d'authentification
       const authReq = req.clone({
         setHeaders: {

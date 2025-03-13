@@ -1,0 +1,43 @@
+<div class="container mt-5">
+    @if(produits){
+        <div class="card mt-5 mb-5 shadow-lg rounded card-header bg-secondary text-white">
+            <h1 class="card-title m-0">Liste des produits</h1>
+        </div>
+
+        @if(this.authService.isAdmin())
+        {
+            <a routerLink="create"><button class="btn btn-success">Nouveau produit</button></a>
+        }
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Catégorie</th>
+                    <th scope="col">Details</th>
+                    @if(this.authService.isAdmin())
+                    {
+                        <th scope="col">Supprimer</th>
+                        <th scope="col">Editer</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @for (produit of produits; track $index) {
+                <tr>
+                    <td>{{produit.nom}}</td>
+                    <td>{{produit.prix}} €</td>
+                    <td>{{produit.categorie.nom}}</td>
+                    <td><a [routerLink]="['details', produit.id]">🔍</a></td>
+                    @if(this.authService.isAdmin())
+                    {
+                        <td><a (click)="onDelete(produit.id)">❌</a></td>
+                        <td><a [routerLink]="['edit', produit.id]">✏</a></td>
+                    }
+                </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

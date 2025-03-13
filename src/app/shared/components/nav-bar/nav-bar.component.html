@@ -8,18 +8,25 @@
       <!-- Partie gauche de la navbar -->
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
+          <a class="nav-link" routerLink="produits">Produits</a>
         </li>
       </ul>
 
       <!-- Partie droite de la navbar -->
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/auth/login">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/auth/register">Register</a>
-        </li>
+        @if(!this.authService.isConnected()){
+            <li class="nav-item">
+              <a class="nav-link" routerLink="auth/login">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="auth/register">Register</a>
+            </li>
+        }
+        @else {
+          <li class="nav-item">
+            <a class="nav-link" (click)="logout()">Logout</a>
+          </li>
+        }
       </ul>
     </div>
   </div>

@@ -1,4 +1,4 @@
-export interface ListCategories {
+export interface Categorie {
     id:number
     nom:string
 }

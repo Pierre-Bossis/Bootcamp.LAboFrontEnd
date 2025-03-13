@@ -1,0 +1,100 @@
+<div class="container">
+    <form [formGroup]="CreateProduitForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label class="form-label mt-5">Informations du produit</label>
+
+            <!-- Champ pour le Nom -->
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="Nom"
+                [ngClass]="{'is-valid': CreateProduitForm.get('nom')?.valid,
+                    'is-invalid': CreateProduitForm.get('nom')?.invalid  && (CreateProduitForm.get('nom')?.dirty || CreateProduitForm.get('nom')?.touched)} ">
+                <label for="nom">Nom</label>
+                <!-- Message d'erreur pour le champ nom -->
+                @if((CreateProduitForm.get('nom')?.touched || CreateProduitForm.get('nom')?.dirty) && CreateProduitForm.get('nom')?.invalid){
+                    @if(CreateProduitForm.get('nom')?.hasError('required')){
+                    <span style="color:red;">Le Nom est requis.</span>
+                    }
+                    @if(CreateProduitForm.get('nom')?.hasError('minlength')){
+                        <span style="color:red;">Le Nom doit posséder au moins 2 caractères.</span>
+                    }
+                }
+            </div>
+
+            <!-- Champ pour le Prix -->
+            <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="prix" formControlName="prix" placeholder="Prix"
+                [ngClass]="{'is-valid': CreateProduitForm.get('prix')?.valid,
+                    'is-invalid': CreateProduitForm.get('prix')?.invalid && (CreateProduitForm.get('prix')?.dirty || CreateProduitForm.get('prix')?.touched)}">
+                <label for="prix">Prix</label>
+                <!-- Message d'erreur pour le champ prix -->
+                @if((CreateProduitForm.get('prix')?.touched || CreateProduitForm.get('prix')?.dirty) && CreateProduitForm.get('prix')?.invalid){
+                    @if(CreateProduitForm.get('prix')?.hasError('required')){
+                        <span style="color:red;">Le Prix est requis.</span>
+                    }
+                    @if(CreateProduitForm.get('prix')?.hasError('min')){
+                        <span style="color:red;">le prix minimum est de 0€</span>
+                    }
+                }
+            </div>
+
+            <!-- Champ pour la Quantité -->
+            <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="quantite" formControlName="quantite" placeholder="Quantité"
+                [ngClass]="{'is-valid': CreateProduitForm.get('quantite')?.valid,
+                    'is-invalid': CreateProduitForm.get('quantite')?.invalid && (CreateProduitForm.get('quantite')?.dirty || CreateProduitForm.get('quantite')?.touched)
+                  }">
+                <label for="quantite">Quantité</label>
+                <!-- Message d'erreur pour le champ quantité -->
+                @if((CreateProduitForm.get('quantite')?.touched || CreateProduitForm.get('quantite')?.dirty) && CreateProduitForm.get('quantite')?.invalid){
+                    @if(CreateProduitForm.get('quantite')?.hasError('required')){
+                        <span style="color:red;">La Quantité est requise.</span>
+                    }
+                }
+                @if(CreateProduitForm.get('quantite')?.hasError('min')){
+                    <span style="color:red;">La quantité minimum est de 0.</span>
+                }
+            </div>
+
+            <!-- Champ pour la Description -->
+            <div class="form-floating mb-3">
+                <textarea class="form-control" id="description" formControlName="description" placeholder="Description"
+                 [ngClass]="{'is-valid': CreateProduitForm.get('description')?.valid,
+                    'is-invalid': CreateProduitForm.get('description')?.invalid && (CreateProduitForm.get('description')?.dirty || CreateProduitForm.get('description')?.touched)
+                  }"></textarea>
+                <label for="description">Description</label>
+                <!-- Message d'erreur pour le champ description -->
+                @if((CreateProduitForm.get('description')?.touched || CreateProduitForm.get('description')?.dirty) && CreateProduitForm.get('description')?.invalid){
+                    @if(CreateProduitForm.get('description')?.hasError('required')){
+                        <span class="invalid-feedback">La Description est requise.</span>
+                    }
+                }
+              </div>
+
+            <!-- Champ pour la Catégorie -->
+            <div class="form-floating mb-3">
+                <select class="form-select" id="categorieId" formControlName="categorieId" 
+                [ngClass]="{'is-valid': CreateProduitForm.get('categorieId')?.valid,
+                    'is-invalid': CreateProduitForm.get('categorieId')?.invalid  && (CreateProduitForm.get('categorieId')?.dirty || CreateProduitForm.get('categorieId')?.touched)} ">
+                    <option value="">Sélectionnez une catégorie</option>
+                    @for (categorie of categories; track $index) {
+                        <option [value]="categorie.id">{{categorie.nom}}</option>
+                    }
+                </select>
+                <label for="categorieId">Catégorie</label>
+                <!-- Message d'erreur pour le champ catégorie -->
+                @if((CreateProduitForm.get('categorieId')?.touched || CreateProduitForm.get('categorieId')?.dirty) && CreateProduitForm.get('categorieId')?.invalid){
+                    @if(CreateProduitForm.get('categorieId')?.hasError('required')){
+                    <span style="color:red;">La Catégorie est requise.</span>
+                    }
+                }
+            </div>
+
+            <div class="form-group">
+                <div class="d-grid gap-2">
+                    <button class="btn btn-lg btn-primary" type="submit" [disabled]="CreateProduitForm.invalid">Créer Produit</button>
+                    <button class="btn btn-lg btn-primary" type="button" ProduitHomeButton>Retour</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
