@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit{
 
   onSubmit(){
     this.authService.login(this.loginForm.value).subscribe((data) => {
+      this.authService.isConnectedSubject.next(true)
       this.toastrService.success('Connexion réussie !')
       localStorage.setItem('token',data),
       this.router.navigate([''])

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from './_environments/environment';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { LoginFormUser, RegisterFormUser } from '../_interfaces/user';
 import { jwtDecode } from "jwt-decode";
 
@@ -11,6 +11,8 @@ import { jwtDecode } from "jwt-decode";
 export class AuthService {
   apiurl: string = environment.apiUrl
   httpClient: HttpClient = inject(HttpClient)
+  isConnectedSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.isConnected());
+
 
   login(form: LoginFormUser): Observable<string> {
     return this.httpClient.post<string>(this.apiurl + 'auth/login', form, { responseType: 'text' as 'json' })
@@ -25,13 +27,17 @@ export class AuthService {
 
     if (token != null && token != '') {
       const decoded: any = jwtDecode(token)
-      console.log(decoded)
 
       let role = decoded['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
       return role === 'Admin' ? true : false
     }
     return false
   }
+
+  get isConnected$(): Observable<boolean> {
+    return this.isConnectedSubject.asObservable();
+  }
+  
   isConnected() {
     const token = localStorage.getItem('token')
 
@@ -47,5 +53,6 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token')
+    this.isConnectedSubject.next(false)
   }
 }

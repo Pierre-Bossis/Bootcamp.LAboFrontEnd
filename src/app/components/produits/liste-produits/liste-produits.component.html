@@ -1,10 +1,10 @@
 <div class="container mt-5">
-    @if(produits){
+    @if(produits.length > 0){
         <div class="card mt-5 mb-5 shadow-lg rounded card-header bg-secondary text-white">
             <h1 class="card-title m-0">Liste des produits</h1>
         </div>
 
-        @if(this.authService.isAdmin())
+        @if(isAdmin)
         {
             <a routerLink="create"><button class="btn btn-success">Nouveau produit</button></a>
         }
@@ -16,7 +16,7 @@
                     <th scope="col">Prix</th>
                     <th scope="col">Catégorie</th>
                     <th scope="col">Details</th>
-                    @if(this.authService.isAdmin())
+                    @if(isAdmin)
                     {
                         <th scope="col">Supprimer</th>
                         <th scope="col">Editer</th>
@@ -30,7 +30,7 @@
                     <td>{{produit.prix}} €</td>
                     <td>{{produit.categorie.nom}}</td>
                     <td><a [routerLink]="['details', produit.id]">🔍</a></td>
-                    @if(this.authService.isAdmin())
+                    @if(isAdmin)
                     {
                         <td><a (click)="onDelete(produit.id)">❌</a></td>
                         <td><a [routerLink]="['edit', produit.id]">✏</a></td>

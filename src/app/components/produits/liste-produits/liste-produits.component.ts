@@ -16,9 +16,11 @@ export class ListeProduitsComponent implements OnInit{
   readonly authService:AuthService = inject(AuthService)
   toastrService:ToastrService = inject(ToastrService)
   produitService:ProduitService = inject(ProduitService)
+  isAdmin:boolean = false
 
 
   ngOnInit(): void {
+    this.isAdmin = this.authService.isAdmin()
     this.refreshProduits()
   }
 

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../_services/auth.service';
 
@@ -8,13 +8,17 @@ import { AuthService } from '../../../_services/auth.service';
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.scss'
 })
-export class NavBarComponent {
+export class NavBarComponent implements OnInit{
   authService:AuthService = inject(AuthService)
   router:Router = inject(Router)
+  isConnected:boolean = false
   
-logout() {
-  this.authService.logout()
-  this.router.navigate([''])
-}
+  ngOnInit(): void {
+    this.authService.isConnected$.subscribe((state) => this.isConnected = state)
+  }
+  logout() {
+    this.authService.logout()
+    this.router.navigate([''])
+  }
 
 }

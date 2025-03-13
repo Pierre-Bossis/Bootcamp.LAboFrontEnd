@@ -14,7 +14,7 @@
 
       <!-- Partie droite de la navbar -->
       <ul class="navbar-nav ms-auto">
-        @if(!this.authService.isConnected()){
+        @if(!isConnected){
             <li class="nav-item">
               <a class="nav-link" routerLink="auth/login">Login</a>
             </li>
