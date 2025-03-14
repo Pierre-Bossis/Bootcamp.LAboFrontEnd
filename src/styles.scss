@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+.navbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+body {
+    padding-top: 100px; /* Ajuste selon la hauteur de ta navbar */
+}

@@ -21,6 +21,9 @@
                         <th scope="col">Supprimer</th>
                         <th scope="col">Editer</th>
                     }
+                    @if(IsConnected){
+                        <th scope="col">Ajout Panier</th>
+                    }
                 </tr>
             </thead>
             <tbody>
@@ -34,6 +37,9 @@
                     {
                         <td><a (click)="onDelete(produit.id)">❌</a></td>
                         <td><a [routerLink]="['edit', produit.id]">✏</a></td>
+                    }
+                    @if(IsConnected){
+                        <td><input type="number" class="col-2" [(ngModel)]="quantites[produit.id]"/><span (click)="AddToBasket(produit.id,quantites[produit.id])" style="cursor: pointer;">🛒</span></td>
                     }
                 </tr>
                 }

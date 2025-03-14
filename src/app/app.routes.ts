@@ -9,6 +9,9 @@ import { DetailsProduitComponent } from './components/produits/details-produit/d
 import { EditProduitComponent } from './components/produits/edit-produit/edit-produit.component';
 import { isAdminGuard } from './shared/guards/is-admin.guard';
 import { userIsNotAuthenticatedGuard } from './shared/guards/user-is-not-authenticated.guard';
+import { ListeCommandesComponent } from './components/commandes/liste-commandes/liste-commandes.component';
+import { userIsAuthenticatedGuard } from './shared/guards/user-is-authenticated.guard';
+import { BasketComponent } from './components/commandes/basket/basket.component';
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -27,6 +30,12 @@ export const routes: Routes = [
             {path: 'edit/:id', component: EditProduitComponent, canActivate: [isAdminGuard]}
         ]
 
+    },
+    {path: 'commandes',
+        children:[
+            {path: '', component: ListeCommandesComponent, canActivate: [userIsAuthenticatedGuard]},
+            {path: 'basket', component: BasketComponent, canActivate: [userIsAuthenticatedGuard]}
+        ]
     },
 
     {path: 'error', component: ErrorPageComponent },

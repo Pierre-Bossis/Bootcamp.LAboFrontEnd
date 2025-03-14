@@ -10,6 +10,11 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="produits">Produits</a>
         </li>
+        @if(isConnected){
+          <li class="nav-item">
+            <a class="nav-link" routerLink="commandes">Commandes</a>
+          </li>
+        }
       </ul>
 
       <!-- Partie droite de la navbar -->
@@ -25,6 +30,9 @@
         @else {
           <li class="nav-item ">
             <p class="nav-link">{{email}}</p>
+          </li>
+          <li class="nav-item ">
+              <a class="nav-link" routerLink="commandes/basket">🛒({{basketCount}})</a>
           </li>
           <li class="nav-item icon">
             <a class="nav-link">👤</a>

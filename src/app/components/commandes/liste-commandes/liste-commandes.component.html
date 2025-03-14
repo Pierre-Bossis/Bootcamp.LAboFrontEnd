@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="card mt-5 mb-5 shadow-lg rounded card-header bg-secondary text-white">
+        <h1 class="card-title m-0">Historique de vos commandes</h1>
+    </div>
+    
+    @for (commande of commandes; track $index){
+        <p>Id: {{commande.id}} passée le: {{commande.date}}</p>
+    }
+</div>

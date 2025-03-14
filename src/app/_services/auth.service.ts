@@ -4,6 +4,7 @@ import { environment } from './_environments/environment';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { LoginFormUser, RegisterFormUser } from '../_interfaces/user';
 import { jwtDecode } from "jwt-decode";
+import { Commandes } from '../_interfaces/commande';
 
 @Injectable({
   providedIn: 'root'
@@ -69,5 +70,9 @@ export class AuthService {
   logout() {
     localStorage.removeItem('token')
     this.isConnectedSubject.next(false)
+  }
+
+  getAllCommandesByUser():Observable<Commandes[]>{
+    return this.httpClient.get<Commandes[]>(this.apiurl + 'auth/getcommandes')
   }
 }

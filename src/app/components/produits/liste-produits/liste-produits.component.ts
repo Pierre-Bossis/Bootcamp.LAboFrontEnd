@@ -1,13 +1,15 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ProduitService } from '../../../_services/produit.service';
 import { ListProduits } from '../../../_interfaces/produit';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../_services/auth.service';
+import { CommandeService } from '../../../_services/commande.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-liste-produits',
-  imports: [RouterLink],
+  imports: [RouterLink, FormsModule],
   templateUrl: './liste-produits.component.html',
   styleUrl: './liste-produits.component.scss'
 })
@@ -16,11 +18,14 @@ export class ListeProduitsComponent implements OnInit{
   readonly authService:AuthService = inject(AuthService)
   toastrService:ToastrService = inject(ToastrService)
   produitService:ProduitService = inject(ProduitService)
+  commandeService:CommandeService = inject(CommandeService)
   isAdmin:boolean = false
-
+  IsConnected:boolean = false
+  quantites: { [key: number]: number } = {};
 
   ngOnInit(): void {
     this.isAdmin = this.authService.isAdmin()
+    this.IsConnected = this.authService.isConnected()
     this.refreshProduits()
   }
 
@@ -36,4 +41,11 @@ export class ListeProduitsComponent implements OnInit{
   () => this.toastrService.error('Erreur lors de la suppression.'))
   }
 
+  AddToBasket(produitId:number, quantite:number = 1){
+    let success = this.commandeService.AddToBasket({produitId, quantite})
+    if(success) this.toastrService.success('Produit ajouté au panier.')
+    else{
+      this.toastrService.error('Erreur lors de l\'ajout du produit au panier.')
+    }
+  }
 }
