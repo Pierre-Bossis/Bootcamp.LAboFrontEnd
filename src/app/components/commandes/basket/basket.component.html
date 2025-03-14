@@ -3,11 +3,32 @@
         <h1 class="card-title m-0">Votre panier</h1>
     </div>
     @if(basket.length > 0){
-        @for (item of basket; track $index) {
-            <li>ProduitId: {{item.produitId}} - Quantite: {{item.quantite}}</li>
-        }
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id Produit</th>
+                <th>Quantité</th>
+                <th>Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of basket; track $index) {
+                <tr>
+                    <td>{{item.produitId}}</td>
+                    <td>{{item.quantite}}</td>
+                    <td><span (click)="onDeleteFromBasket($index)">❌</span></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="form-group mt-5">
+        <div class="d-grid gap-2">
+            <button class="btn btn-lg btn-primary" type="button">Commander</button>
+        </div>
+    </div>
     }
     @else {
-        <p>Votre panier est vide.</p>
+    <p>Votre panier est vide.</p>
     }
 </div>

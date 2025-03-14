@@ -29,7 +29,7 @@ export class CommandeService {
   }
 
   RemoveFromBasket(index:number){
-    this.basket = this.basket.slice(index,1)
+    this.basket.splice(index,1)
     this.basketCountSubject.next(this.basketCountSubject.value -1)
   }
 

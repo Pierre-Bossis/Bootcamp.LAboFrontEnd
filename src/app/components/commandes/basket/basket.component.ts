@@ -12,8 +12,15 @@ export class BasketComponent implements OnInit{
   commandeService:CommandeService = inject(CommandeService)
   basket:Commande_Produit[] = []
   
-  
   ngOnInit(): void {
+    this.loadBasket()
+  }
+
+  loadBasket(){
     this.basket =  [...this.commandeService.basket]
+  }
+  onDeleteFromBasket(index:number) {
+    this.commandeService.RemoveFromBasket(index)
+    this.loadBasket()
   }
 }
