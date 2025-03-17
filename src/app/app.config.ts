@@ -16,7 +16,7 @@ export const appConfig: ApplicationConfig = {
               provideToastr({
                 timeOut: 3000,
                 positionClass: 'toast-bottom-right',
-                preventDuplicates: true,
+                maxOpened: 5,
                 progressAnimation: 'decreasing'
               })
   ]

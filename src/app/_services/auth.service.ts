@@ -67,6 +67,15 @@ export class AuthService {
     }
   }
 
+  getId(){
+    const token = localStorage.getItem('token')
+
+    if (this.isConnected() && token != null) {
+      const decoded: any = jwtDecode(token)
+      return decoded['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/sid']
+    }
+  }
+
   logout() {
     localStorage.removeItem('token')
     this.isConnectedSubject.next(false)

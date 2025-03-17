@@ -15,6 +15,11 @@
             <a class="nav-link" routerLink="commandes">Commandes</a>
           </li>
         }
+        @if(this.authService.isAdmin()){
+          <li class="nav-item">
+            <a class="nav-link" routerLink="commandes/all">Toutes les commandes</a>
+          </li>
+        }
       </ul>
 
       <!-- Partie droite de la navbar -->

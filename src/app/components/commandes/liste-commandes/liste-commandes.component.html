@@ -4,6 +4,16 @@
     </div>
     
     @for (commande of commandes; track $index){
-        <p>Id: {{commande.id}} passée le: {{commande.date}}</p>
+        <p>Id: {{commande.id}} 
+           passée le: {{commande.date}}
+           <span [ngClass]="{
+            'etat-en-attente': commande.etatId === 1,
+            'etat-en-cours': commande.etatId === 2,
+            'etat-valide': commande.etatId === 3,
+            'etat-annule': commande.etatId === 4
+          }">
+           -> {{getEtatLibelle(commande.etatId)}}
+           </span>
+        </p>
     }
 </div>
