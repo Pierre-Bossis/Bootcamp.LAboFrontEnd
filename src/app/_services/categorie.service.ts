@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from './_environments/environment';
 import { Observable } from 'rxjs';
-import { Categorie } from '../_interfaces/categorie';
+import { Categorie, CreateCategorieForm } from '../_interfaces/categorie';
 
 @Injectable({
   providedIn: 'root'
@@ -13,5 +13,9 @@ export class CategorieService {
 
   getAllCategories():Observable<Categorie[]>{
     return this.httpClient.get<Categorie[]>(this.apiUrl + "categorie")
+  }
+
+  createCategorie(form:CreateCategorieForm):Observable<Categorie>{
+    return this.httpClient.post<Categorie>(this.apiUrl + 'categorie', form)
   }
 }

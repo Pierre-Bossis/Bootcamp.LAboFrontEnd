@@ -14,6 +14,8 @@ import { userIsAuthenticatedGuard } from './shared/guards/user-is-authenticated.
 import { BasketComponent } from './components/commandes/basket/basket.component';
 import { AllCommandesAdminComponent } from './components/commandes/all-commandes-admin/all-commandes-admin.component';
 import { DetailsCommandeComponent } from './components/commandes/details-commande/details-commande.component';
+import { Component } from '@angular/core';
+import { CreateCategorieComponent } from './components/categories/create-categorie/create-categorie.component';
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -39,6 +41,11 @@ export const routes: Routes = [
             {path: 'details/:id', component: DetailsCommandeComponent, canActivate: [userIsAuthenticatedGuard]},
             {path: 'basket', component: BasketComponent, canActivate: [userIsAuthenticatedGuard]},
             {path: 'all', component: AllCommandesAdminComponent, canActivate: [isAdminGuard]}
+        ]
+    },
+    {path: 'categories',
+        children:[
+            {path:'create', component: CreateCategorieComponent, canActivate: [isAdminGuard]}
         ]
     },
 
