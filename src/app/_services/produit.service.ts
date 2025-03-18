@@ -30,4 +30,8 @@ export class ProduitService {
   editProduit(id:number, form:updateProduit):Observable<FullProduit>{
     return this.httpClient.put<FullProduit>(this.apiUrl + 'produit/update/' + id, form)
   }
+
+  getProduitByCategorieName(name:string):Observable<ListProduits[]>{
+    return this.httpClient.get<ListProduits[]>(this.apiUrl + 'produit/categorie/nom/' + name)
+  }
 }

@@ -14,7 +14,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './liste-produits.component.scss'
 })
 export class ListeProduitsComponent implements OnInit{
+  search!: string;
   produits:ListProduits[] = []
+  produitsCopy : ListProduits[] = []
   readonly authService:AuthService = inject(AuthService)
   toastrService:ToastrService = inject(ToastrService)
   produitService:ProduitService = inject(ProduitService)
@@ -30,8 +32,23 @@ export class ListeProduitsComponent implements OnInit{
   }
 
   refreshProduits(){
-    this.produitService.GetAllProduits().subscribe((data) => this.produits = data)
+    this.produitService.GetAllProduits().subscribe((data) => {
+      this.produits = data
+      this.produitsCopy = data
+    })
   }
+
+  onSearchChange() {
+    if (this.search.length >= 2){
+      this.produitService.getProduitByCategorieName(this.search).subscribe((data) => {
+        this.produits = data
+      })
+    }
+    else{
+      this.produits = this.produitsCopy
+    }
+  }
+    
 
   onDelete(id:number){
     this.produitService.delete(id).subscribe((data) => {
