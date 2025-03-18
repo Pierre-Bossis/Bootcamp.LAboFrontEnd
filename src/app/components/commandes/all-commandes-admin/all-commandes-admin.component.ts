@@ -5,10 +5,11 @@ import { CommonModule } from '@angular/common';
 import { EtatsCommande } from '../../../_enums/etats-commande';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-all-commandes-admin',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './all-commandes-admin.component.html',
   styleUrl: './all-commandes-admin.component.scss'
 })

@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="card mt-5 mb-5 shadow-lg rounded card-header bg-secondary text-white">
+        <h1 class="card-title m-0">Détails de la commande</h1>
+    </div>
+
+    @if(commande){
+    <p>Référence de la commande: {{commande.id}}</p>
+    <p>commande passée le: {{commande.date}}</p>
+    <p>commande passée par: {{commande.utilisateurId}}</p>
+
+    <hr />
+
+    <h3>Liste des produits de la commande</h3>
+
+    <ul>
+        @for (produit of commande.produits; track $index) {
+            <li>Quantité commandée: {{produit.quantite}}</li>
+            <li>Nom: {{produit.nom}}</li>
+            <li>Description: {{produit.description}}</li>
+            <li>Prix: {{produit.prix}} €</li>
+            <li>Catégorie: {{produit.categorie.nom}}</li>
+        }
+    </ul>
+    }
+</div>

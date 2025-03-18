@@ -4,7 +4,9 @@
     </div>
     
     @for (commande of commandes; track $index){
-        <p>Id: {{commande.id}} 
+        <p>
+          <span [routerLink]="['/commandes','details', commande.id]">🔍</span>
+          Id: {{commande.id}} 
            passée le: {{commande.date}} 
             Etat:
            <span>-> 

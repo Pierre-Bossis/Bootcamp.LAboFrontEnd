@@ -2,11 +2,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommandeService } from '../../../_services/commande.service';
 import { Commande_Produit } from '../../../_interfaces/commande';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-basket',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './basket.component.html',
   styleUrl: './basket.component.scss'
 })

@@ -14,7 +14,7 @@
         <tbody>
             @for (item of basket; track $index) {
                 <tr>
-                    <td>{{item.produitId}}</td>
+                    <td>{{item.produitId}}<span [routerLink]="['/produits','details', item.produitId]">🔍</span></td>
                     <td>{{item.quantite}}</td>
                     <td><span (click)="onDeleteFromBasket($index)">❌</span></td>
                 </tr>

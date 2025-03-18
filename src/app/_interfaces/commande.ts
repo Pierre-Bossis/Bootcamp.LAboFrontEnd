@@ -1,11 +1,11 @@
-import { ListProduits } from "./produit"
+import { FullProduit, ListProduits } from "./produit"
 
 export interface Commandes {
     id:number
     etatId: number
     utilisateurId:string
     date:Date
-    produits:ListProduits[]
+    produits:FullProduit[]
 }
 
 export interface Commande_Produit{

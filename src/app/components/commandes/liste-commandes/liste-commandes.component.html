@@ -4,8 +4,10 @@
     </div>
     
     @for (commande of commandes; track $index){
-        <p>Id: {{commande.id}} 
-           passée le: {{commande.date}}
+        <p>
+            <span [routerLink]="['/commandes','details', commande.id]">🔍</span>
+            Id: {{commande.id}} 
+            passée le: {{commande.date}}
            <span [ngClass]="{
             'etat-en-attente': commande.etatId === 1,
             'etat-en-cours': commande.etatId === 2,

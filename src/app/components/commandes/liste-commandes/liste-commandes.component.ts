@@ -3,10 +3,11 @@ import { AuthService } from '../../../_services/auth.service';
 import { Commandes } from '../../../_interfaces/commande';
 import { EtatsCommande } from '../../../_enums/etats-commande';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-liste-commandes',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './liste-commandes.component.html',
   styleUrl: './liste-commandes.component.scss'
 })

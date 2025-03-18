@@ -13,6 +13,7 @@ import { ListeCommandesComponent } from './components/commandes/liste-commandes/
 import { userIsAuthenticatedGuard } from './shared/guards/user-is-authenticated.guard';
 import { BasketComponent } from './components/commandes/basket/basket.component';
 import { AllCommandesAdminComponent } from './components/commandes/all-commandes-admin/all-commandes-admin.component';
+import { DetailsCommandeComponent } from './components/commandes/details-commande/details-commande.component';
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -35,6 +36,7 @@ export const routes: Routes = [
     {path: 'commandes',
         children:[
             {path: '', component: ListeCommandesComponent, canActivate: [userIsAuthenticatedGuard]},
+            {path: 'details/:id', component: DetailsCommandeComponent, canActivate: [userIsAuthenticatedGuard]},
             {path: 'basket', component: BasketComponent, canActivate: [userIsAuthenticatedGuard]},
             {path: 'all', component: AllCommandesAdminComponent, canActivate: [isAdminGuard]}
         ]

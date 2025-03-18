@@ -23,6 +23,10 @@ export class CommandeService {
     return this.httpClient.get<Commandes[]>(this.apiUrl + 'commande')
   }
 
+  getCommandeById(id:number):Observable<Commandes>{
+    return this.httpClient.get<Commandes>(this.apiUrl + 'commande/' + id)
+  }
+
   createCommande(basket:Commande_Produit[]):Observable<string>{
     return this.httpClient.post<string>(this.apiUrl + 'commande/create-commande', basket,{responseType: 'text' as 'json'}).pipe(
       tap(() => {
@@ -40,6 +44,12 @@ export class CommandeService {
     get basketCount$(): Observable<number> {
       return this.basketCountSubject.asObservable();
     }
+
+
+
+
+
+
 
     initBasket(){
       const storedBasket = localStorage.getItem('basket' + this.authService.getId());
