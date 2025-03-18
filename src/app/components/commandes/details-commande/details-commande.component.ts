@@ -3,10 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommandeService } from '../../../_services/commande.service';
 import { Commandes } from '../../../_interfaces/commande';
 import { ToastrService } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-details-commande',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './details-commande.component.html',
   styleUrl: './details-commande.component.scss'
 })

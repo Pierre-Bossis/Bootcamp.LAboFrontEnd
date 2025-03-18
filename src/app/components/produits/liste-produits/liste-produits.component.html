@@ -9,11 +9,12 @@
             <a routerLink="create"><button class="btn btn-success">Nouveau produit</button></a>
         }
 
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">Nom</th>
-                    <th scope="col">Prix</th>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prix</th>
                     <th scope="col">Catégorie</th>
                     <th scope="col">Details</th>
                     @if(isAdmin)
@@ -28,11 +29,11 @@
             </thead>
             <tbody>
                 @for (produit of produits; track $index) {
-                <tr>
-                    <td>{{produit.nom}}</td>
-                    <td>{{produit.prix}} €</td>
-                    <td>{{produit.categorie.nom}}</td>
-                    <td><a [routerLink]="['details', produit.id]">🔍</a></td>
+                    <tr>
+                        <td>{{produit.nom}}</td>
+                        <td>{{produit.prix}} €</td>
+                        <td>{{produit.categorie.nom}}</td>
+                        <td><a [routerLink]="['details', produit.id]">🔍</a></td>
                     @if(isAdmin)
                     {
                         <td><a (click)="onDelete(produit.id)">❌</a></td>
@@ -45,5 +46,6 @@
                 }
             </tbody>
         </table>
+    </div>
     }
 </div>

@@ -1,25 +1,43 @@
-<div class="container">
-    <div class="card mt-5 mb-5 shadow-lg rounded card-header bg-secondary text-white">
-        <h1 class="card-title m-0">Détails de la commande</h1>
+<div class="container mt-5">
+    <div class="card shadow-lg rounded">
+        <div class="card-header bg-secondary text-white">
+            <h1 class="card-title m-0">Détails de la commande</h1>
+        </div>
+        <div class="card-body">
+            @if (commande) {
+                <div class="mb-4">
+                    <p><strong>Référence de la commande:</strong> {{ commande.id }}</p>
+                    <p><strong>Commande passée le:</strong> {{ commande.date | date:'dd/MM/yyyy à HH:mm' }}</p>
+                    <p><strong>Commande passée par:</strong> {{ commande.utilisateurId }}</p>
+                </div>
+
+                <h3 class="mb-3">Liste des produits de la commande</h3>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Quantité</th>
+                                <th>Nom</th>
+                                <th>Description</th>
+                                <th>Prix (€)</th>
+                                <th>Catégorie</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (produit of commande.produits; track $index) {
+                                <tr>
+                                    <td>{{ produit.quantite }}</td>
+                                    <td>{{ produit.nom }}</td>
+                                    <td>{{ produit.description }}</td>
+                                    <td>{{ produit.prix }}</td>
+                                    <td>{{ produit.categorie.nom }}</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
     </div>
-
-    @if(commande){
-    <p>Référence de la commande: {{commande.id}}</p>
-    <p>commande passée le: {{commande.date}}</p>
-    <p>commande passée par: {{commande.utilisateurId}}</p>
-
-    <hr />
-
-    <h3>Liste des produits de la commande</h3>
-
-    <ul>
-        @for (produit of commande.produits; track $index) {
-            <li>Quantité commandée: {{produit.quantite}}</li>
-            <li>Nom: {{produit.nom}}</li>
-            <li>Description: {{produit.description}}</li>
-            <li>Prix: {{produit.prix}} €</li>
-            <li>Catégorie: {{produit.categorie.nom}}</li>
-        }
-    </ul>
-    }
 </div>
